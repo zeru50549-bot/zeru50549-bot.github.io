@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>الأسعار</h2>
+<p>اطلع على أسعار المنتجات والخدمات لدينا.</p>
+
+<div class="row">
+    {% for item in prices %}
+    <div class="col-md-4 mb-3">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">السعر: {{ item.price }} جنيه</p>
+                <a href="{{ url_for('order', price_id=item.id) }}" class="btn btn-primary">اطلب المنتج</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>طلباتي</h2>
+{% if orders %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>رقم الطلب</th>
+                <th>المنتج</th>
+                <th>السعر</th>
+                <th>الحالة</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.product }}</td>
+                <td>{{ order.price }} جنيه</td>
+                <td>{{ order.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>لم تقم بأي طلب بعد.</p>
+{% endif %}
+{% endblock %}
