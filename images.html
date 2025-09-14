@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">معرض الصور</h2>
+
+<div class="row">
+    {% for image in brand_images %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center">
+            <!-- اضغط على الصورة لتفتح -->
+            <a href="{{ url_for('static', filename='images/' + image.filename) }}" target="_blank">
+                <img src="{{ url_for('static', filename='images/' + image.filename) }}" class="card-img-top" alt="{{ image.name }}">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">{{ image.name }}</h5>
+                <!-- زر طلب المنتج -->
+                <a href="{{ url_for('order', brand_id=image.id) }}" class="btn btn-primary mt-2">اطلب المنتج</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
