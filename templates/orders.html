@@ -1,29 +1,49 @@
 {% extends "base.html" %}
+{% block title %}طلباتك{% endblock %}
 
 {% block content %}
-<h2>طلباتي</h2>
-{% if orders %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>رقم الطلب</th>
-                <th>المنتج</th>
-                <th>السعر</th>
-                <th>الحالة</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for order in orders %}
-            <tr>
-                <td>{{ order.id }}</td>
-                <td>{{ order.product }}</td>
-                <td>{{ order.price }} جنيه</td>
-                <td>{{ order.status }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>لم تقم بأي طلب بعد.</p>
-{% endif %}
+<div class="container mt-4">
+    <h2 class="mb-4">جميع طلباتك</h2>
+
+    {% if orders %}
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>البراند</th>
+                    <th>العميل</th>
+                    <th>رقم الهاتف</th>
+                    <th>العنوان</th>
+                    <th>السعر</th>
+                    <th>الحالة</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>
+                        {{ order.brand_name }}
+                        {% set brand_image = order.brand_image if order.brand_image else None %}
+                        {% if brand_image %}
+                        <br>
+                        <img src="{{ url_for('static', filename='images/' ~ brand_image) }}" 
+                             style="width: 80px; height: 80px;" class="img-thumbnail mt-1">
+                        {% endif %}
+                    </td>
+                    <td>{{ order.customer_name }}</td>
+                    <td>{{ order.phone }}</td>
+                    <td>{{ order.address }}</td>
+                    <td>{{ order.price }} جنيه</td>
+                    <td>{{ order.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-center">لا توجد طلبات حتى الآن.</p>
+    {% endif %}
+</div>
 {% endblock %}

@@ -1,20 +1,29 @@
+<!-- templates/prices.html -->
 {% extends "base.html" %}
+{% block title %}الأسعار{% endblock %}
 
 {% block content %}
-<h2>الأسعار</h2>
-<p>اطلع على أسعار المنتجات والخدمات لدينا.</p>
+<div class="container mt-4">
+    <h2 class="mb-4">قائمة أسعار البراندات</h2>
+    <div class="row">
+        {% for brand in brands %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 d-flex flex-row align-items-center p-2">
 
-<div class="row">
-    {% for item in prices %}
-    <div class="col-md-4 mb-3">
-        <div class="card text-center h-100">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">السعر: {{ item.price }} جنيه</p>
-                <a href="{{ url_for('order', price_id=item.id) }}" class="btn btn-primary">اطلب المنتج</a>
+                {% if brand.image %}
+                <img src="{{ url_for('static', filename='images/' ~ brand.image) }}" 
+                     class="img-thumbnail me-3" style="width: 100px; height: 100px;" alt="{{ brand.name }}">
+                {% endif %}
+
+                <div class="flex-grow-1">
+                    <h5 class="card-title mb-1">{{ brand.name }}</h5>
+                    <p class="mb-1">السعر: {{ brand.price }} جنيه</p>
+                    <p class="mb-0">الحالة: متاحة</p> <!-- ممكن تضيف حالة فعلية إذا موجودة في DB -->
+                </div>
+
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

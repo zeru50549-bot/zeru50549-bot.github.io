@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}فيديو البراند{% endblock %}
+
+{% block content %}
+<div class="container mt-4 text-center">
+    <h2 class="mb-4">{{ brand.name }}</h2>
+    {% if brand.video %}
+    <video class="w-75" controls>
+        <source src="{{ url_for('static', filename='videos/' ~ brand.video) }}" type="video/mp4">
+        متصفحك لا يدعم عرض الفيديو
+    </video>
+    {% else %}
+    <p>لا يوجد فيديو لهذا البراند</p>
+    {% endif %}
+</div>
+{% endblock %}

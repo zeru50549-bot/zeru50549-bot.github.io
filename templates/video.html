@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}فيديو{% endblock %}
+
+{% block content %}
+<div class="container mt-4 text-center">
+    <h2 class="mb-4">{{ video.name }}</h2>
+    <video class="w-75" controls>
+        <source src="{{ url_for('static', filename='videos/' ~ video.filename) }}" type="video/mp4">
+        متصفحك لا يدعم عرض الفيديو
+    </video>
+</div>
+{% endblock %}

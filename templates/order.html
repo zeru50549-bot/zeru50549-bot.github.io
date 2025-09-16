@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4 text-center">طلب المنتج</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <img src="{{ url_for('static', filename=brand.get('image', 'images/default.png')) }}" class="card-img-top" alt="{{ brand.name }}">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{ brand.name }}</h5>
+                <p class="card-text text-center">{{ brand.price }} ج.م</p>
+
+                <form method="POST" action="{{ url_for('order', brand_id=brand.id) }}">
+                    <div class="mb-3">
+                        <label for="customer_name" class="form-label">الاسم</label>
+                        <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">رقم الموبايل</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">العنوان</label>
+                        <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100">تأكيد الطلب</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

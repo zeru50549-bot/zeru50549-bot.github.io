@@ -1,31 +1,42 @@
+<!-- templates/admin_orders.html -->
 {% extends "base.html" %}
+{% block title %}طلبات الأدمن{% endblock %}
+
 {% block content %}
-<h2>لوحة إدارة الطلبات</h2>
+<h2 class="mb-4">جميع الطلبات</h2>
+{% if orders %}
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>رقم الطلب</th>
-            <th>اسم المستخدم</th>
-            <th>المنتج</th>
+            <th>#</th>
+            <th>البراند</th>
+            <th>العميل</th>
+            <th>رقم الهاتف</th>
+            <th>العنوان</th>
             <th>السعر</th>
             <th>الحالة</th>
-            <th>إجراءات</th>
+            <th>التحكم</th>
         </tr>
     </thead>
     <tbody>
         {% for order in orders %}
         <tr>
             <td>{{ order.id }}</td>
-            <td>{{ order.user }}</td>
-            <td>{{ order.product }}</td>
+            <td>{{ order.brand_name }}</td>
+            <td>{{ order.customer_name }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.address }}</td>
             <td>{{ order.price }}</td>
             <td>{{ order.status }}</td>
             <td>
                 <a href="{{ url_for('update_order', order_id=order.id, action='complete') }}" class="btn btn-success btn-sm">تم</a>
-                <a href="{{ url_for('update_order', order_id=order.id, action='cancel') }}" class="btn btn-danger btn-sm">إلغاء</a>
+                <a href="{{ url_for('update_order', order_id=order.id, action='cancel') }}" class="btn btn-danger btn-sm">ملغي</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p class="text-center">لا توجد طلبات حتى الآن.</p>
+{% endif %}
 {% endblock %}

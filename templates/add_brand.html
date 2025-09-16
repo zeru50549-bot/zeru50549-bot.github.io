@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}إضافة براند جديد{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">إضافة براند جديد</h2>
+
+<form action="{{ url_for('add_brand') }}" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="name" class="form-label">اسم البراند</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">كلمة المرور</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="image" class="form-label">صورة البراند</label>
+        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+    </div>
+
+    <div class="mb-3">
+        <label for="video_file" class="form-label">فيديو البراند (اختياري)</label>
+        <input type="file" class="form-control" id="video_file" name="video_file" accept="video/*">
+    </div>
+
+    <div class="mb-3">
+        <label for="price" class="form-label">السعر</label>
+        <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">إضافة البراند</button>
+</form>
+{% endblock %}

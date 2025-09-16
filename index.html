@@ -1,26 +1,0 @@
-{% extends "base.html" %}
-
-{% block content %}
-<h2>𝑍𝐸𝑅𝑂 للبراندات</h2>
-<p>تصفح البراندات والفيديوهات والأسعار.</p>
-
-<div class="row">
-    {% for brand in brand_images %}
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <!-- الصورة قابلة للفتح في تاب جديد -->
-                <a href="{{ url_for('static', filename='images/' + brand.image) }}" target="_blank">
-                    <img src="{{ url_for('static', filename='images/' + brand.image) }}" class="card-img-top" alt="{{ brand.name }}">
-                </a>
-                <div class="card-body text-center">
-                    <h5 class="card-title">{{ brand.name }}</h5>
-                    <p class="card-text">السعر: {{ brand.price }} جنيه</p>
-                    <!-- زر طلب المنتج -->
-                    <a href="{{ url_for('place_order', brand_id=brand.id) }}" class="btn btn-primary">اطلب المنتج</a>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
-{% endblock %}

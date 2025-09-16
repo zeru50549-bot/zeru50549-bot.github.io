@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}صورة{% endblock %}
+
+{% block content %}
+<div class="container mt-4 text-center">
+    <h2 class="mb-4">{{ image.name }}</h2>
+
+    {% if image.filename %}
+    <img src="{{ url_for('static', filename='images/' ~ image.filename) }}" 
+         class="img-fluid rounded" alt="{{ image.name }}">
+    {% else %}
+    <img src="{{ url_for('static', filename='images/default.png') }}" 
+         class="img-fluid rounded" alt="صورة افتراضية">
+    {% endif %}
+
+</div>
+{% endblock %}

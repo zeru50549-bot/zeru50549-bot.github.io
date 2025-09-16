@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}نموذج الطلب{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">طلب البراند: {{ brand.name }}</h2>
+    <form method="POST" action="{{ url_for('order', brand_id=brand.id) }}">
+        <div class="mb-3">
+            <label class="form-label">اسم العميل</label>
+            <input type="text" class="form-control" name="customer_name" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">رقم الهاتف</label>
+            <input type="text" class="form-control" name="phone" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">العنوان</label>
+            <textarea class="form-control" name="address" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">إرسال الطلب</button>
+    </form>
+</div>
+{% endblock %}
